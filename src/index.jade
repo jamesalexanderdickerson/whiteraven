@@ -1,0 +1,17 @@
+doctype
+html(lang='en' ng-app='myApp')
+	head
+		meta(charset='UTF-8')
+		title Document
+		link(rel='stylesheet' href='bower_components/skeleton/css/skeleton.css')
+		link(rel='stylesheet' href='stylesheets/main.css')
+		script(src='bower_components/angular/angular.js')
+		script(src='bower_components/angular-route/angular-route.js')
+		script(src='bower_components/angular-animate/angular-animate.js')
+		script(src='bower_components/firebase/firebase.js')
+		script(src='bower_components/angularfire/dist/angularfire.js')
+	body
+		.main(ng-view)
+		script(src='js/main-min.js') 
+		script(src='js/controllers/registration-min.js')  
+		script(src='js/controllers/success-min.js')

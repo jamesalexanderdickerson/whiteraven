@@ -1,0 +1,16 @@
+section.card.login
+	div(ng-show="authData")
+		p Hello, {{ authData.facebook.displayName }}
+	form(name="myform", novalidate)
+	.main(ng-hide="authData")
+		h1 Login
+		p
+			|{{message}}
+		fieldset
+			.inputs.top_field
+				input(type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true")
+			.inputs.bottom_field
+				input(type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true")
+		button(type="submit" class="btn") Login
+		button(type="submit" ng-click="auth.$authWithOAuthPopup('facebook')") Login with Facebook
+		p: or #[a(href="#/register") Register]

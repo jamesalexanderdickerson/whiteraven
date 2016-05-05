@@ -1,0 +1,1 @@
+(function(){var e;e=angular.module("SuccessController",[]),e.controller("SuccessController",["$scope",function(e){return e.message="Welcome to my App"}])}).call(this);
