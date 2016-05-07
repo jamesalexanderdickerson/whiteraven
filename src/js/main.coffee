@@ -3,11 +3,21 @@
 
 myApp = angular.module 'myApp', ['ngRoute', 'ngAnimate', 'RegistrationController', 'SuccessController', 'firebase']
 
+myApp.run ["$rootScope", "$location", ($rootScope, $location) ->
+  $rootScope.$on "$routeChangeError", (event, next, previous, error) ->
+    $location.path "/login" if error == "AUTH_REQUIRED"
+]
+
 myApp.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
     .when('/login', {
       templateUrl: 'views/login.html'
-      controller: 'RegistrationController'
+      controller: 'RegistrationController',
+      resolve: {
+        "currentAuth": ["Auth", (Auth) ->
+          Auth.$waitForAuth()
+        ]
+      }
       })
     .when('/register', {
       templateUrl: 'views/register.html'
@@ -15,7 +25,12 @@ myApp.config ['$routeProvider', ($routeProvider) ->
       })
     .when('/success', {
       templateUrl: 'views/success.html'
-      controller: 'SuccessController'
+      controller: 'SuccessController',
+      resolve: {
+        "currentAuth": ["Auth", (Auth) ->
+          Auth.$requireAuth()
+        ]
+      }
       })
     .otherwise({
       redirectTo: '/login'

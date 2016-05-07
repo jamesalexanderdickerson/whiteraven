@@ -1,1 +1,1 @@
-(function(){var e;e=angular.module("SuccessController",[]),e.controller("SuccessController",["$scope",function(e){return e.message="Welcome to my App"}])}).call(this);
+(function(){var e;e=angular.module("SuccessController",["firebase"]),e.factory("Auth",["$firebaseAuth",function(e){var r;return r=new Firebase("https://myappdatabase1.firebaseio.com"),e(r)}]),e.controller("SuccessController",["$scope","currentAuth",function(e,r){return e.message="Welcome to my App"}])}).call(this);
