@@ -1,18 +1,12 @@
-section.card
+section.myRegForm
 	form(name="myform" novalidate)
 		.textintro
 			h1 Register
 			p To access the site features
 		fieldset
 			.inputs.top_field
-				input(type="text" ng-model="firstname" placeholder="First Name")
-			.inputs.middle_field
-				input(type="text" ng-model="lastname" placeholder="Last Name")
-			.inputs.middle_field    
-				input(type="email" ng-model="email" placeholder="Email")
+				input(type="text" ng-model="user.email" placeholder="Email")
 			.inputs.bottom_field
-				input(type="password" ng-model="password" placeholder="Password")
-			p(ng-if="message") Message: {{ message }}
-			p(ng-if="error") Error: {{ error }}
+				input(type="password" ng-model="user.password" placeholder="Password")
 		button(type="submit" class="btn" ng-click="createUser()") Register
-		p: or #[a(href="#/login") Login ]
+		p: or #[a(href="#/") Login ]

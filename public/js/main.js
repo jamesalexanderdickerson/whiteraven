@@ -7,15 +7,31 @@
     "$rootScope", "$location", function($rootScope, $location) {
       return $rootScope.$on("$routeChangeError", function(event, next, previous, error) {
         if (error === "AUTH_REQUIRED") {
-          return $location.path("/login");
+          return $location.path("/");
         }
       });
     }
   ]);
 
+  myApp.factory("Auth", [
+    "$firebaseAuth", function($firebaseAuth) {
+      var db;
+      db = new Firebase('https://myappdatabase1.firebaseio.com');
+      return $firebaseAuth(db);
+    }
+  ]);
+
+  myApp.factory("Messages", [
+    "$firebaseObj", function($firebaseObj) {
+      var db;
+      db = new Firebase('https://myappdatabase1.firebaseio.com/');
+      return $firebaseObj(db);
+    }
+  ]);
+
   myApp.config([
     '$routeProvider', function($routeProvider) {
-      return $routeProvider.when('/login', {
+      return $routeProvider.when('/', {
         templateUrl: 'views/login.html',
         controller: 'RegistrationController',
         resolve: {
@@ -27,19 +43,16 @@
         }
       }).when('/register', {
         templateUrl: 'views/register.html',
-        controller: 'RegistrationController'
-      }).when('/success', {
-        templateUrl: 'views/success.html',
-        controller: 'SuccessController',
+        controller: 'RegistrationController',
         resolve: {
           "currentAuth": [
             "Auth", function(Auth) {
-              return Auth.$requireAuth();
+              return Auth.$waitForAuth();
             }
           ]
         }
       }).otherwise({
-        redirectTo: '/login'
+        redirectTo: '/'
       });
     }
   ]);

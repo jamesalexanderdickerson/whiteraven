@@ -3,17 +3,27 @@
 
   SuccessController = angular.module('SuccessController', ['firebase']);
 
-  SuccessController.factory("Auth", [
-    "$firebaseAuth", function($firebaseAuth) {
-      var db;
-      db = new Firebase('https://myappdatabase1.firebaseio.com');
-      return $firebaseAuth(db);
-    }
-  ]);
-
   SuccessController.controller('SuccessController', [
-    '$scope', 'currentAuth', function($scope, currentAuth) {
-      return $scope.message = "Welcome to my App";
+    '$scope', 'Auth', 'currentAuth', function($scope, Auth, currentAuth) {
+      $scope.displayName = null;
+      $scope.auth = Auth;
+      $scope.auth.$onAuth(function(authData) {
+        $scope.authData = authData;
+        return $scope.displayName = authData.facebook.displayName || authData.password.email;
+      });
+      $scope.removeUser = function() {
+        $scope.message = null;
+        $scope.error = null;
+        return Auth.$removeUser({
+          email: $scope.email,
+          password: $scope.password
+        }).then(function() {
+          return $scope.message = 'User removed';
+        })["catch"](function(error) {
+          return $scope.error = error;
+        });
+      };
+      return $scope.message = 'You have successfully logged in!!! Whoop Whoop!';
     }
   ]);
 

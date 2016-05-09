@@ -1,28 +1,33 @@
 RegistrationController = angular.module 'RegistrationController' , ['firebase']
 
-RegistrationController.factory "Auth", ["$firebaseAuth", ($firebaseAuth) ->
-  db = new Firebase 'https://myappdatabase1.firebaseio.com/user'
-  $firebaseAuth(db)
-]
-
 RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', ($scope, Auth, currentAuth) ->
+  $scope.displayName = null
   $scope.auth = Auth
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
 
+  $scope.facebookLogin = () =>
+    Auth.$authWithOAuthPopup('facebook').then((userData) ->
+      $scope.displayName = userData.facebook.displayName
+      console.log userData
+    )
+
   $scope.login = () ->
-    # $scope.authData = null
+    $scope.message = null
+    $scope.error = null
+    email = $scope.user.email
+    password = $scope.user.password
     $scope.error = null
 
     Auth.$authWithPassword({
-      email: $scope.user.email,
-      password: $scope.user.password
-      }).then((authData) ->
-        console.log "Logged in as: ", authData.uid
-        console.log authData.password.email
-        if authData.facebook.displayName then $scope.user.email = authData.facebook.displayName else $scope.user.email = authData.password.email
+      email: email
+      password: password
+      }).then((userData) ->
+        $scope.displayName = userData.password.email
+        $scope.message = "You have successfully logged in!"
         ).catch((error) ->
-          console.error "Authentication failed: ", error
+          $scope.error = error
+          console.log error
           )
 
   $scope.createUser = () ->
@@ -30,12 +35,14 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
     $scope.error = null
 
     Auth.$createUser({
-      email: $scope.email,
-      password: $scope.password,
-      firstname: $scope.firstname,
-      lastname: $scope.lastname
+      email: $scope.user.email,
+      password: $scope.user.password,
+      firstname: $scope.user.firstname,
+      lastname: $scope.user.lastname
       }).then (userData) ->
         $scope.message = 'User created with uid ' + userData.uid
+        $scope.firstname = userData.firstname
+        $scope.lastname = userData.lastname
       .catch (error) ->
         $scope.error = error
 

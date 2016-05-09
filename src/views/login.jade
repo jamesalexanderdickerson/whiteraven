@@ -1,5 +1,5 @@
-div(ng-show="authData")
-	p Hello, {{ user.email }}
+div(ng-show="authData" controller="SuccessController")
+	p Hello, {{ displayName }}
 	button(ng-click="auth.$unauth()") Logout
 
 section.mylogin
@@ -14,5 +14,5 @@ section.mylogin
 				.inputs.bottom_field
 					input(type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true")
 			button(type="submit" class="btn" ng-click="login()") Login
-			button(type="submit" ng-click="auth.$authWithOAuthPopup('facebook')") Login with Facebook
+			button(type="submit" ng-click="facebookLogin()") Login with Facebook
 			p: or #[a(href="#/register") Register]
