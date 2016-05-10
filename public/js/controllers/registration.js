@@ -4,17 +4,25 @@
   RegistrationController = angular.module('RegistrationController', ['firebase']);
 
   RegistrationController.controller('RegistrationController', [
-    '$scope', 'Auth', 'currentAuth', function($scope, Auth, currentAuth) {
+    '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', function($scope, Auth, currentAuth, $location, $firebaseObject) {
       $scope.displayName = null;
       $scope.auth = Auth;
       $scope.auth.$onAuth(function(authData) {
-        return $scope.authData = authData;
+        var currentUser, userRef;
+        $scope.authData = authData;
+        if (authData && !authData.facebook) {
+          console.log(authData);
+          userRef = new Firebase('https://myappdatabase1.firebaseio.com/users/' + authData.uid);
+          currentUser = $firebaseObject(userRef);
+          return currentUser.$loaded().then(function() {
+            return $scope.displayName = currentUser.firstname + " " + currentUser.lastname;
+          });
+        }
       });
       $scope.facebookLogin = (function(_this) {
         return function() {
           return Auth.$authWithOAuthPopup('facebook').then(function(userData) {
-            $scope.displayName = userData.facebook.displayName;
-            return console.log(userData);
+            return $scope.displayName = userData.facebook.displayName;
           });
         };
       })(this);
@@ -32,9 +40,6 @@
         return Auth.$authWithPassword({
           email: email,
           password: password
-        }).then(function(userData) {
-          $scope.displayName = userData.password.email;
-          return $scope.message = "You have successfully logged in!";
         })["catch"](function(error) {
           $scope.error = error;
           return console.log(error);
@@ -49,9 +54,18 @@
           firstname: $scope.user.firstname,
           lastname: $scope.user.lastname
         }).then(function(userData) {
+          var regRef;
+          regRef = new Firebase('https://myappdatabase1.firebaseio.com/users').child(userData.uid).set({
+            date: Firebase.ServerValue.TIMESTAMP,
+            regUser: userData.uid,
+            firstname: $scope.user.firstname,
+            lastname: $scope.user.lastname,
+            email: $scope.user.email
+          });
           $scope.message = 'User created with uid ' + userData.uid;
           $scope.firstname = userData.firstname;
-          return $scope.lastname = userData.lastname;
+          $scope.lastname = userData.lastname;
+          return $location.path('/');
         })["catch"](function(error) {
           return $scope.error = error;
         });

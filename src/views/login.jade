@@ -17,3 +17,5 @@ section.mylogin
 			button(type="submit" ng-click="facebookLogin()") Login with Facebook
 			p.
 				or #[a(ng-href="#/register") Register]
+			span.validationerror
+				{{error.message}}
