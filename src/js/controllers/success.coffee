@@ -21,7 +21,8 @@ SuccessController.controller 'SuccessController', ['$scope','Auth', 'currentAuth
 
   $scope.logout = () ->
     $scope.displayName = null
-    $scope.auth.$unauth()
+    Auth.$unauth()
+
 
   $scope.message = 'You have successfully logged in!!! Whoop Whoop!'
 

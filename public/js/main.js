@@ -51,6 +51,16 @@
             }
           ]
         }
+      }).when('/success', {
+        templateUrl: 'views/success.html',
+        controller: 'SuccessController',
+        resolve: {
+          "currentAuth": [
+            "Auth", function(Auth) {
+              return Auth.$waitForAuth();
+            }
+          ]
+        }
       }).otherwise({
         redirectTo: '/'
       });

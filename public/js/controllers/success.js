@@ -25,7 +25,7 @@
       };
       $scope.logout = function() {
         $scope.displayName = null;
-        return $scope.auth.$unauth();
+        return Auth.$unauth();
       };
       return $scope.message = 'You have successfully logged in!!! Whoop Whoop!';
     }

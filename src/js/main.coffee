@@ -38,6 +38,15 @@ myApp.config ['$routeProvider', ($routeProvider) ->
         ]
       }
       })
+    .when('/success', {
+      templateUrl: 'views/success.html',
+      controller: 'SuccessController',
+      resolve: {
+        "currentAuth": ["Auth", (Auth) ->
+          Auth.$waitForAuth()
+        ]
+      }
+      })
     .otherwise({
       redirectTo: '/'
       })

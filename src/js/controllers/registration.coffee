@@ -6,8 +6,6 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
 
-  $scope.register = () ->
-
   $scope.facebookLogin = () =>
     Auth.$authWithOAuthPopup('facebook').then((userData) ->
       $scope.displayName = userData.facebook.displayName
@@ -16,8 +14,6 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
 
   $scope.logout = () ->
     $scope.displayName = null
-    email = null
-    password = null
     Auth.$unauth()
 
   $scope.login = () ->

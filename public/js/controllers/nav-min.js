@@ -1,1 +1,0 @@
-(function(){var a;a=angular.module("NavController",["firebase"]),a.controller("NavController",["$scope","Auth","currentAuth",function(a,t,l){return a.displayName=null,a.authData=null,a.auth=t,a.auth.$onAuth(function(t){return a.authData=t,a.displayName=t.facebook.displayName||t.password.email})}])}).call(this);
