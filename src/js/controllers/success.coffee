@@ -19,6 +19,10 @@ SuccessController.controller 'SuccessController', ['$scope','Auth', 'currentAuth
       .catch (error) ->
         $scope.error = error
 
+  $scope.logout = () ->
+    $scope.displayName = null
+    $scope.auth.$unauth()
+
   $scope.message = 'You have successfully logged in!!! Whoop Whoop!'
 
 ]

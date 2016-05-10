@@ -1,12 +1,16 @@
+nav(class="cf" ng-include="'views/nav.html'")
 section.myRegForm
-	form(name="myform" novalidate)
+	form(name="myform" novalidate ng-submit="register()")
 		.textintro
 			h1 Register
 			p To access the site features
 		fieldset
 			.inputs.top_field
-				input(type="text" ng-model="user.email" placeholder="Email")
+				input(type="text" ng-model="user.email" name="email" placeholder="Email" ng-required="true")
 			.inputs.bottom_field
-				input(type="password" ng-model="user.password" placeholder="Password")
-		button(type="submit" class="btn" ng-click="createUser()") Register
-		p: or #[a(href="#/") Login ]
+				input(type="password" ng-model="user.password" name="password" placeholder="Password" ng-required="true")
+		button(type="submit" class="btn" ng-click="createUser()" ng-disable="myform.$invalid") Register
+		p.
+			or #[a(ng-href="#/") Login ]
+		p(class="validationerror" ng-show="myform.email.$invalid && myform.email.$touched") Must be a valid email.
+		p(class="validationerror" ng-show="myform.password.$invalid && myform.password.$touched") A password is required.

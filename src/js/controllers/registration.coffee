@@ -6,11 +6,19 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
 
+  $scope.register = () ->
+
   $scope.facebookLogin = () =>
     Auth.$authWithOAuthPopup('facebook').then((userData) ->
       $scope.displayName = userData.facebook.displayName
       console.log userData
     )
+
+  $scope.logout = () ->
+    $scope.displayName = null
+    email = null
+    password = null
+    Auth.$unauth()
 
   $scope.login = () ->
     $scope.message = null

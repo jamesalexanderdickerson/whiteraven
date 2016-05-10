@@ -1,0 +1,9 @@
+div.nav
+	a(ng-href="#/") {{displayName}}
+	ul
+		li(ng-hide="authData")
+			a(ng-href="#/login") Login
+		li(ng-hide="authData")
+			a(ng-href="#/register") Register
+		li(ng-show="authData")
+			a(class="logout" ng-click="logout()") Logout

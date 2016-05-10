@@ -2,6 +2,48 @@ body {
   background-color: #23242f;
   color: #fff;
 }
+nav {
+  width: 100%;
+}
+.nav {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-align-self: stretch;
+      -ms-flex-item-align: stretch;
+          align-self: stretch;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.nav > a {
+  -webkit-align-self: flex-start;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+}
+.nav > ul {
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+}
+.nav > ul > li {
+  display: inline;
+  margin-right: 10px;
+}
+.nav > ul > li > a {
+  text-decoration: none;
+}
+.logout {
+  cursor: pointer;
+}
 .main {
   margin: 0 auto;
 }
@@ -15,6 +57,17 @@ select {
   height: 50px;
   margin: 0;
   box-sizing: border-box;
+}
+.validationerror {
+  color: #ab1400;
+}
+input.ng-touched,
+input.ng-invalid {
+  border: 2px solid #ab1400;
+}
+input.ng-touched,
+input.ng-valid {
+  border: 2px solid #00951c;
 }
 .inputs.top_field > input {
   border-bottom-left-radius: 0;

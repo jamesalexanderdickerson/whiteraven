@@ -10,8 +10,9 @@ html(lang='en' ng-app='myApp')
 		script(src='bower_components/angular-animate/angular-animate.js')
 		script(src='bower_components/firebase/firebase.js')
 		script(src='bower_components/angularfire/dist/angularfire.js')
-	body
-		.main(ng-view)
 		script(src='js/main-min.js') 
+		script(src='js/controllers/nav-min.js')
 		script(src='js/controllers/registration-min.js')  
 		script(src='js/controllers/success-min.js')
+	body
+		.main(ng-view)

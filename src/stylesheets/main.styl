@@ -2,6 +2,31 @@ body
    background-color rgb(35, 36, 47)
    color white
 
+nav
+  width 100%
+.nav
+  width 100%
+  display flex
+  flex-direction row
+  align-self stretch
+  justify-content space-between
+
+.nav > a
+  align-self flex-start
+
+.nav > ul
+  align-self flex-end
+
+.nav > ul > li
+  display inline
+  margin-right 10px
+
+.nav > ul > li > a
+  text-decoration none
+
+.logout
+  cursor pointer
+
 .main
   margin 0 auto
 
@@ -13,6 +38,15 @@ input, textarea, select
   height 50px
   margin 0
   box-sizing border-box
+
+.validationerror
+  color rgb(171, 20, 0)
+
+input.ng-touched, input.ng-invalid
+  border 2px solid rgb(171, 20, 0)
+
+input.ng-touched, input.ng-valid
+  border 2px solid rgb(0, 149, 28)
 
 .inputs.top_field > input
   border-bottom-left-radius 0

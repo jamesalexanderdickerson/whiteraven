@@ -23,6 +23,10 @@
           return $scope.error = error;
         });
       };
+      $scope.logout = function() {
+        $scope.displayName = null;
+        return $scope.auth.$unauth();
+      };
       return $scope.message = 'You have successfully logged in!!! Whoop Whoop!';
     }
   ]);

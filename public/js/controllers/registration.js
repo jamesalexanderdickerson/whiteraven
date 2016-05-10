@@ -10,6 +10,7 @@
       $scope.auth.$onAuth(function(authData) {
         return $scope.authData = authData;
       });
+      $scope.register = function() {};
       $scope.facebookLogin = (function(_this) {
         return function() {
           return Auth.$authWithOAuthPopup('facebook').then(function(userData) {
@@ -18,6 +19,13 @@
           });
         };
       })(this);
+      $scope.logout = function() {
+        var email, password;
+        $scope.displayName = null;
+        email = null;
+        password = null;
+        return Auth.$unauth();
+      };
       $scope.login = function() {
         var email, password;
         $scope.message = null;

@@ -1,6 +1,6 @@
+nav(class="cf" ng-include="'views/nav.html'")
 div(ng-show="authData" controller="SuccessController")
 	p Hello, {{ displayName }}
-	button(ng-click="auth.$unauth()") Logout
 
 section.mylogin
 	form(name="myform", novalidate)
@@ -15,4 +15,5 @@ section.mylogin
 					input(type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true")
 			button(type="submit" class="btn" ng-click="login()") Login
 			button(type="submit" ng-click="facebookLogin()") Login with Facebook
-			p: or #[a(href="#/register") Register]
+			p.
+				or #[a(ng-href="#/register") Register]
