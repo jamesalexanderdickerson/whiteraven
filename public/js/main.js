@@ -71,6 +71,16 @@
             }
           ]
         }
+      }).when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'RegistrationController',
+        resolve: {
+          "currentAuth": [
+            "Auth", function(Auth) {
+              return Auth.$waitForAuth();
+            }
+          ]
+        }
       }).when('/', {
         templateUrl: 'views/main.html',
         controller: 'RegistrationController',

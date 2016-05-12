@@ -45,17 +45,62 @@ nav {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border-bottom: 1px solid #1e1838;
+  border-bottom: 1px solid #4b4b4b;
+  z-index: 9999;
 }
 .nav > a {
   -webkit-align-self: flex-start;
       -ms-flex-item-align: start;
           align-self: flex-start;
 }
-.nav > a.logo {
-  margin-left: 20px;
+.logobox {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 50px;
+  width: 200px;
+}
+.logobox > h1 {
+  margin-top: 5px;
+  font-family: 'Marcellus';
   color: #fff;
+}
+.nav > a.logo {
   text-decoration: none;
+  margin-left: 20px;
+  margin-top: -10px;
+}
+.nav > .logo {
+  display: inline;
+  background-color: rgba(0,0,0,0);
+  background-image: url("../assets/images/logo.png");
+  background-size: 50px 50px;
+  background-repeat: no-repeat;
+  height: 50px;
+  width: 50px;
+  z-index: 50;
+}
+.nav > .loginlogo {
+  position: fixed;
+  background-image: url("../assets/images/spirit.png");
+  background-size: 50px 100;
+  background-repeat: no-repeat;
+  top: 30px;
+  left: 20px;
+  bottom: 0;
+  width: 51px;
+  height: 100%;
+  z-index: 99;
 }
 .nav > ul {
   -webkit-align-self: flex-end;
@@ -71,12 +116,13 @@ nav {
 }
 .sidebar {
   background-color: #000b0b;
-  border-right: 1px solid #1e1838;
+  border-right: 1px solid #4b4b4b;
   position: fixed;
-  top: 76px;
+  top: 69px;
   bottom: 0;
   left: 0;
   width: 20%;
+  z-index: 1;
 }
 .menu {
   display: -webkit-box;
@@ -120,6 +166,7 @@ select {
   margin: 0;
   box-sizing: border-box;
   font-size: 14px;
+  font-family: 'Raleway';
 }
 .inputs {
   display: -webkit-box;
@@ -164,6 +211,10 @@ input.ng-valid.ng-touched {
 .inputs.middle_field > input {
   border-radius: 0;
 }
+.inputs.comments > textarea {
+  margin-top: 10px;
+  height: 150px;
+}
 textarea {
   vertical-align: top;
 }
@@ -176,4 +227,15 @@ form {
   width: 90%;
   height: 498px;
   margin: 10% 0 0 33%;
+}
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+.content_logged_in {
+  width: 60%;
+  margin: 0 0 0 30%;
+}
+.content > h1 {
+  text-align: center;
 }

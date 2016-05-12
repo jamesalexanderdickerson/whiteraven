@@ -1,7 +1,13 @@
-div.nav
+.nav
 	a(class="logo" ng-href="#/")
-		h1 whiteraven
+		.logobox
+			.logo
+			h1.
+				whiteraven
+	.loginlogo(ng-show="authData")
 	ul
+		li
+			a(ng-href="#/contact") Contact
 		li(ng-hide="authData")
 			a(ng-href="#/login") Login
 		li(ng-hide="authData")

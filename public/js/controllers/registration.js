@@ -7,7 +7,6 @@
     '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', 'UserService', function($scope, Auth, currentAuth, $location, $firebaseObject, UserService) {
       var user;
       user = UserService;
-      console.log(user);
       $scope.displayName = UserService.displayName;
       $scope.auth = Auth;
       $scope.auth.$onAuth(function(authData) {

@@ -1,0 +1,27 @@
+nav(class="cf" ng-include="'views/nav.html'")
+div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
+section.myContactForm
+	form(name="myform" novalidate)
+		.textintro
+			h1 Contact Us
+			p Tell us something!
+		fieldset
+			.inputs.top_field(ng-hide="authData")
+				input(type="email" ng-model="user.email" name="email" placeholder="Email" ng-required="true")
+				p(class="validationerror" ng-show="myform.email.$invalid && myform.email.$touched") Must be a valid email.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.email.$valid && myform.email.$touched")
+			.inputs.middle_field(ng-hide="authData")
+				input(type="text" ng-model="user.firstname" name="firstname" placeholder="First Name" ng-required="true")
+				p(class="validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched") Must enter a first name.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.firstname.$valid && myform.firstname.$touched")
+			.inputs.bottom_field(ng-hide="authData")
+				input(type="text" ng-model="user.lastname" name="lastname" placeholder="Last Name" ng-required="true")
+				p(class="validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched") Must enter a last name.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.lastname.$valid && myform.lastname.$touched")
+			.inputs.comments
+				textarea(class="comments" ng-model="myform.comments" placeholder="Comments here..." ng-required="true")
+				p(class="validationerror" ng-show="myform.comments.$invalid && myform.comments.$touched") Must enter a comment to submit.
+		button(type="submit" class="btn" ng-click="createUser()" ng-disable="myform.$invalid") Submit

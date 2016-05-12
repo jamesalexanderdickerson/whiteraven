@@ -55,6 +55,15 @@ myApp.config ['$routeProvider', ($routeProvider) ->
         ]
       }
       })
+    .when('/contact', {
+      templateUrl: 'views/contact.html',
+      controller: 'RegistrationController',
+      resolve: {
+        "currentAuth": ["Auth", (Auth) ->
+          Auth.$waitForAuth()
+        ]
+      }
+      })
     .when('/', {
       templateUrl: 'views/main.html',
       controller: 'RegistrationController',
