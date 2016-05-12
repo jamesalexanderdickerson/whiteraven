@@ -1,7 +1,8 @@
 nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 div(class="mainsite" ng-show="authData" controller="SuccessController")
-	p Hello, {{ displayName }}
+	p Hello, {{ displayName }}! 
+	p You have successfully logged in!
 	p.
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda sed, corporis cupiditate quisquam? Voluptatem non dicta sed fuga repudiandae maxime, ipsum sit magni quisquam quis deleniti adipisci, facere, dolore assumenda.
 
@@ -23,7 +24,7 @@ section.mylogin
 					.valid
 						img(src="../assets/images/valid.png" ng-show="myform.password.$valid && myform.password.$touched")
 			button(type="submit" class="btn" ng-click="login()") Login
-			button(type="submit" ng-click="facebookLogin()") Login with Facebook
+			button(class="fb_btn" type="submit" ng-click="facebookLogin()") Login with Facebook
 			p.
 				or #[a(ng-href="#/register") Register]
 			span.validationerror

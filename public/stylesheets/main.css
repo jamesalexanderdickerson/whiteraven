@@ -239,3 +239,8 @@ form {
 .content > h1 {
   text-align: center;
 }
+.fb_btn {
+  text-align: center;
+  padding: 0;
+  width: 200px;
+}
