@@ -4,8 +4,11 @@
   RegistrationController = angular.module('RegistrationController', ['firebase']);
 
   RegistrationController.controller('RegistrationController', [
-    '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', 'User', function($scope, Auth, currentAuth, $location, $firebaseObject, User) {
-      $scope.displayName = null;
+    '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', 'UserService', function($scope, Auth, currentAuth, $location, $firebaseObject, UserService) {
+      var user;
+      user = UserService;
+      console.log(user);
+      $scope.displayName = UserService.displayName;
       $scope.auth = Auth;
       $scope.auth.$onAuth(function(authData) {
         var currentUser, userRef;
@@ -14,19 +17,22 @@
           userRef = new Firebase('https://myappdatabase1.firebaseio.com/users/' + authData.uid);
           currentUser = $firebaseObject(userRef);
           return currentUser.$loaded().then(function() {
-            return $scope.displayName = currentUser.firstname + " " + currentUser.lastname;
+            UserService.ChangeName(currentUser.firstname + " " + currentUser.lastname);
+            return $scope.displayName = UserService.displayName;
           });
         }
       });
       $scope.facebookLogin = (function(_this) {
         return function() {
+          user = UserService;
           return Auth.$authWithOAuthPopup('facebook').then(function(userData) {
-            return $scope.displayName = userData.facebook.displayName;
+            UserService.ChangeName(userData.facebook.displayName);
+            return $scope.displayName = UserService.displayName;
           });
         };
       })(this);
       $scope.logout = function() {
-        $scope.displayName = null;
+        $scope.displayName = UserService;
         Auth.$unauth();
         return $location.path('/login');
       };

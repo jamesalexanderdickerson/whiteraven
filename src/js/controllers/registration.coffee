@@ -1,7 +1,9 @@
 RegistrationController = angular.module 'RegistrationController' , ['firebase']
 
-RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', '$location', '$firebaseObject', 'User', ($scope, Auth, currentAuth, $location, $firebaseObject, User) ->
-  $scope.displayName = null
+RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', '$location', '$firebaseObject', 'UserService', ($scope, Auth, currentAuth, $location, $firebaseObject, UserService) ->
+  user = UserService
+  console.log user
+  $scope.displayName = UserService.displayName
   $scope.auth = Auth
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
@@ -9,16 +11,19 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
       userRef = new Firebase 'https://myappdatabase1.firebaseio.com/users/' + authData.uid
       currentUser = $firebaseObject(userRef)
       currentUser.$loaded().then(() ->
-        $scope.displayName = currentUser.firstname + " " + currentUser.lastname
+        UserService.ChangeName(currentUser.firstname + " " + currentUser.lastname)
+        $scope.displayName = UserService.displayName
         )
 
   $scope.facebookLogin = () =>
+    user = UserService
     Auth.$authWithOAuthPopup('facebook').then((userData) ->
-      $scope.displayName = userData.facebook.displayName
+      UserService.ChangeName(userData.facebook.displayName)
+      $scope.displayName = UserService.displayName
     )
 
   $scope.logout = () ->
-    $scope.displayName = null
+    $scope.displayName = UserService
     Auth.$unauth()
     $location.path '/login'
 

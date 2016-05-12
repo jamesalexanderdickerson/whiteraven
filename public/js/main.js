@@ -21,20 +21,15 @@
     }
   ]);
 
-  myApp.factory("User", [
-    "$rootScope", function($rootScope) {
-      var service;
-      return service = {
-        displayName: '',
-        SaveState: function() {
-          return sessionStorage.User.service.displayName = service.displayName;
-        },
-        RestoreState: function() {
-          return service.displayName = sessionStorage.User.service.displayName;
-        }
-      };
-    }
-  ]);
+  myApp.factory("UserService", function() {
+    var user;
+    user = {};
+    user.displayName = "Comic Fan";
+    user.ChangeName = function(value) {
+      return user.displayName = value;
+    };
+    return user;
+  });
 
   myApp.factory("Messages", [
     "$firebaseObj", function($firebaseObj) {

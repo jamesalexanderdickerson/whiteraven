@@ -13,16 +13,12 @@ myApp.factory "Auth", ["$firebaseAuth", ($firebaseAuth) ->
   $firebaseAuth(db)
 ]
 
-myApp.factory "User", ["$rootScope", ($rootScope) ->
-  service = {
-    displayName: '',
-    SaveState: () ->
-      sessionStorage.User.service.displayName = service.displayName
-
-    RestoreState: () ->
-      service.displayName = sessionStorage.User.service.displayName
-  }
-]
+myApp.factory "UserService", () ->
+  user = {}
+  user.displayName = "Comic Fan"
+  user.ChangeName = (value) ->
+    user.displayName = value
+  return user
 
 
 myApp.factory "Messages", ["$firebaseObj", ($firebaseObj) ->
