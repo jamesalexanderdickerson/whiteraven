@@ -1,8 +1,20 @@
+@@font-face
+  font-family Marcellus
+  src url(../assets/fonts/Marcellus-Regular.ttf)
+
+html
+  height 100%
+  width 100%
+
 body
-   background-color rgb(35, 36, 47)
+   background linear-gradient(#16141F, rgb(0, 11, 11))
+   background-color #16141F
+   height 100%
+   width 100%
    color white
    margin 0
    padding 0
+   overflow hidden
 
 nav
   width 100%
@@ -12,6 +24,7 @@ nav
   margin-bottom 20px
   padding 0
   background-color rgb(0, 11, 11)
+
 .nav
   width 100%
   padding-top 20px
@@ -19,9 +32,15 @@ nav
   flex-direction row
   align-self stretch
   justify-content space-between
+  border-bottom 1px solid rgb(30, 24, 56)
 
 .nav > a
   align-self flex-start
+
+.nav > a.logo
+  margin-left 20px
+  color white
+  text-decoration none
 
 .nav > ul
   align-self flex-end
@@ -33,29 +52,73 @@ nav
 .nav > ul > li > a
   text-decoration none
 
+.sidebar
+  background-color rgb(0, 11, 11)
+  border-right 1px solid rgb(30, 24, 56)
+  position fixed
+  top 76px
+  bottom 0
+  left 0
+  width 20%
+
+.menu
+  display flex
+  justify-content center
+
+.menu > p
+  margin-top 20px
+
+h1
+  font-size 3rem
+  font-family 'Marcellus'
+p.displayName
+  font-family 'Marcellus'
+  color #433E36
+
 .logout
   cursor pointer
 
 .main
   margin 0 auto
 
+.mainsite
+  width 70%
+  margin 0 0 0 25%
+
 fieldset
-  width 80%
+  width 100%
 
 input, textarea, select
-  width 250px
+  width 25%
   height 50px
   margin 0
   box-sizing border-box
+  font-size 14px
+
+.inputs
+  display flex
 
 .validationerror
-  color rgb(171, 20, 0)
+  color rgb(199, 29, 6)
+  align-self flex-end
+  margin 0 0 0 20px
+  padding 0
 
-input.ng-touched, input.ng-invalid
-  border 2px solid rgb(171, 20, 0)
+.valid
+  margin-left 20px
+  align-self flex-end
+  height 50
+  width 50
 
-input.ng-touched, input.ng-valid
-  border 2px solid rgb(0, 149, 28)
+.valid > img
+  height 70%
+  width 70%
+
+input.ng-invalid.ng-touched
+  border 1px solid rgb(199, 29, 6)
+
+input.ng-valid.ng-touched
+  border 1px solid rgb(0, 149, 28)
 
 .inputs.top_field > input
   border-bottom-left-radius 0
@@ -77,6 +140,6 @@ button
 
 form
   position relative
-  width 740px
+  width 90%
   height 498px
-  margin 0 auto
+  margin 10% 0 0 33%

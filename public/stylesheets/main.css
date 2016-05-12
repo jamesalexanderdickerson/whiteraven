@@ -1,8 +1,21 @@
+@@font-face {
+  font-family: Marcellus;
+  src: url("../assets/fonts/Marcellus-Regular.ttf");
+}
+html {
+  height: 100%;
+  width: 100%;
+}
 body {
-  background-color: #23242f;
+  background: -webkit-linear-gradient(#16141f, #000b0b);
+  background: linear-gradient(#16141f, #000b0b);
+  background-color: #16141f;
+  height: 100%;
+  width: 100%;
   color: #fff;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 nav {
   width: 100%;
@@ -32,11 +45,17 @@ nav {
   -webkit-justify-content: space-between;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  border-bottom: 1px solid #1e1838;
 }
 .nav > a {
   -webkit-align-self: flex-start;
       -ms-flex-item-align: start;
           align-self: flex-start;
+}
+.nav > a.logo {
+  margin-left: 20px;
+  color: #fff;
+  text-decoration: none;
 }
 .nav > ul {
   -webkit-align-self: flex-end;
@@ -50,33 +69,89 @@ nav {
 .nav > ul > li > a {
   text-decoration: none;
 }
+.sidebar {
+  background-color: #000b0b;
+  border-right: 1px solid #1e1838;
+  position: fixed;
+  top: 76px;
+  bottom: 0;
+  left: 0;
+  width: 20%;
+}
+.menu {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.menu > p {
+  margin-top: 20px;
+}
+h1 {
+  font-size: 3rem;
+  font-family: 'Marcellus';
+}
+p.displayName {
+  font-family: 'Marcellus';
+  color: #433e36;
+}
 .logout {
   cursor: pointer;
 }
 .main {
   margin: 0 auto;
 }
+.mainsite {
+  width: 70%;
+  margin: 0 0 0 25%;
+}
 fieldset {
-  width: 80%;
+  width: 100%;
 }
 input,
 textarea,
 select {
-  width: 250px;
+  width: 25%;
   height: 50px;
   margin: 0;
   box-sizing: border-box;
+  font-size: 14px;
+}
+.inputs {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
 }
 .validationerror {
-  color: #ab1400;
+  color: #c71d06;
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+  margin: 0 0 0 20px;
+  padding: 0;
 }
-input.ng-touched,
-input.ng-invalid {
-  border: 2px solid #ab1400;
+.valid {
+  margin-left: 20px;
+  -webkit-align-self: flex-end;
+      -ms-flex-item-align: end;
+          align-self: flex-end;
+  height: 50;
+  width: 50;
 }
-input.ng-touched,
-input.ng-valid {
-  border: 2px solid #00951c;
+.valid > img {
+  height: 70%;
+  width: 70%;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid #c71d06;
+}
+input.ng-valid.ng-touched {
+  border: 1px solid #00951c;
 }
 .inputs.top_field > input {
   border-bottom-left-radius: 0;
@@ -98,7 +173,7 @@ button {
 }
 form {
   position: relative;
-  width: 740px;
+  width: 90%;
   height: 498px;
-  margin: 0 auto;
+  margin: 10% 0 0 33%;
 }

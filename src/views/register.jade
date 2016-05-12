@@ -1,4 +1,5 @@
 nav(class="cf" ng-include="'views/nav.html'")
+div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 section.myRegForm
 	form(name="myform" novalidate)
 		.textintro
@@ -7,16 +8,24 @@ section.myRegForm
 		fieldset
 			.inputs.top_field
 				input(type="email" ng-model="user.email" name="email" placeholder="Email" ng-required="true")
+				p(class="validationerror" ng-show="myform.email.$invalid && myform.email.$touched") Must be a valid email.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.email.$valid && myform.email.$touched")
 			.inputs.middle_field
 				input(type="text" ng-model="user.firstname" name="firstname" placeholder="First Name" ng-required="true")
+				p(class="validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched") Must enter a first name.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.firstname.$valid && myform.firstname.$touched")
 			.inputs.middle_field
 				input(type="text" ng-model="user.lastname" name="lastname" placeholder="Last Name" ng-required="true")
+				p(class="validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched") Must enter a last name.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.lastname.$valid && myform.lastname.$touched")
 			.inputs.bottom_field
 				input(type="password" ng-model="user.password" name="password" placeholder="Password" ng-required="true")
+				p(class="validationerror" ng-show="myform.password.$invalid && myform.password.$touched") A password is required.
+				.valid
+					img(src="../assets/images/valid2.png" ng-show="myform.password.$valid && myform.password.$touched")
 		button(type="submit" class="btn" ng-click="createUser()" ng-disable="myform.$invalid") Register
 		p.
-			or #[a(ng-href="#/") Login ]
-		p(class="validationerror" ng-show="myform.email.$invalid && myform.email.$touched") Must be a valid email.
-		p(class="validationerror" ng-show="myform.password.$invalid && myform.password.$touched") A password is required.
-		span.validationerror
-			{{error.message}}
+			or #[a(ng-href="#/login") Login ]

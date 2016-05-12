@@ -4,14 +4,13 @@
   RegistrationController = angular.module('RegistrationController', ['firebase']);
 
   RegistrationController.controller('RegistrationController', [
-    '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', function($scope, Auth, currentAuth, $location, $firebaseObject) {
+    '$scope', 'Auth', 'currentAuth', '$location', '$firebaseObject', 'User', function($scope, Auth, currentAuth, $location, $firebaseObject, User) {
       $scope.displayName = null;
       $scope.auth = Auth;
       $scope.auth.$onAuth(function(authData) {
         var currentUser, userRef;
         $scope.authData = authData;
         if (authData && !authData.facebook) {
-          console.log(authData);
           userRef = new Firebase('https://myappdatabase1.firebaseio.com/users/' + authData.uid);
           currentUser = $firebaseObject(userRef);
           return currentUser.$loaded().then(function() {
@@ -28,7 +27,8 @@
       })(this);
       $scope.logout = function() {
         $scope.displayName = null;
-        return Auth.$unauth();
+        Auth.$unauth();
+        return $location.path('/login');
       };
       $scope.login = function() {
         var email, password;
@@ -41,8 +41,7 @@
           email: email,
           password: password
         })["catch"](function(error) {
-          $scope.error = error;
-          return console.log(error);
+          return $scope.error = error;
         });
       };
       $scope.createUser = function() {
@@ -62,9 +61,7 @@
             lastname: $scope.user.lastname,
             email: $scope.user.email
           });
-          $scope.message = 'User created with uid ' + userData.uid;
-          $scope.firstname = userData.firstname;
-          $scope.lastname = userData.lastname;
+          $scope.login();
           return $location.path('/');
         })["catch"](function(error) {
           return $scope.error = error;

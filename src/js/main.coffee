@@ -13,6 +13,18 @@ myApp.factory "Auth", ["$firebaseAuth", ($firebaseAuth) ->
   $firebaseAuth(db)
 ]
 
+myApp.factory "User", ["$rootScope", ($rootScope) ->
+  service = {
+    displayName: '',
+    SaveState: () ->
+      sessionStorage.User.service.displayName = service.displayName
+
+    RestoreState: () ->
+      service.displayName = sessionStorage.User.service.displayName
+  }
+]
+
+
 myApp.factory "Messages", ["$firebaseObj", ($firebaseObj) ->
   db = new Firebase 'https://myappdatabase1.firebaseio.com/'
   $firebaseObj(db)
@@ -20,7 +32,7 @@ myApp.factory "Messages", ["$firebaseObj", ($firebaseObj) ->
 
 myApp.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
-    .when('/', {
+    .when('/login', {
       templateUrl: 'views/login.html'
       controller: 'RegistrationController',
       resolve: {
@@ -41,6 +53,15 @@ myApp.config ['$routeProvider', ($routeProvider) ->
     .when('/success', {
       templateUrl: 'views/success.html',
       controller: 'SuccessController',
+      resolve: {
+        "currentAuth": ["Auth", (Auth) ->
+          Auth.$waitForAuth()
+        ]
+      }
+      })
+    .when('/', {
+      templateUrl: 'views/main.html',
+      controller: 'RegistrationController',
       resolve: {
         "currentAuth": ["Auth", (Auth) ->
           Auth.$waitForAuth()

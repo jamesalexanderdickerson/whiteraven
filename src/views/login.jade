@@ -1,6 +1,9 @@
 nav(class="cf" ng-include="'views/nav.html'")
-div(ng-show="authData" controller="SuccessController")
+div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
+div(class="mainsite" ng-show="authData" controller="SuccessController")
 	p Hello, {{ displayName }}
+	p.
+		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda sed, corporis cupiditate quisquam? Voluptatem non dicta sed fuga repudiandae maxime, ipsum sit magni quisquam quis deleniti adipisci, facere, dolore assumenda.
 
 section.mylogin
 	form(name="myform", novalidate)
@@ -11,8 +14,14 @@ section.mylogin
 			fieldset
 				.inputs.top_field
 					input(type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true")
+					p(class="validationerror" ng-show="myform.email.$invalid && myform.email.$touched") Must be a valid email.
+					.valid
+						img(src="../assets/images/valid.png" ng-show="myform.email.$valid && myform.email.$touched")
 				.inputs.bottom_field
 					input(type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true")
+					p(class="validationerror" ng-show="myform.password.$invalid && myform.password.$touched") A password is required.
+					.valid
+						img(src="../assets/images/valid.png" ng-show="myform.password.$valid && myform.password.$touched")
 			button(type="submit" class="btn" ng-click="login()") Login
 			button(type="submit" ng-click="facebookLogin()") Login with Facebook
 			p.

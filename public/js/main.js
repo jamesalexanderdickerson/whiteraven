@@ -21,6 +21,21 @@
     }
   ]);
 
+  myApp.factory("User", [
+    "$rootScope", function($rootScope) {
+      var service;
+      return service = {
+        displayName: '',
+        SaveState: function() {
+          return sessionStorage.User.service.displayName = service.displayName;
+        },
+        RestoreState: function() {
+          return service.displayName = sessionStorage.User.service.displayName;
+        }
+      };
+    }
+  ]);
+
   myApp.factory("Messages", [
     "$firebaseObj", function($firebaseObj) {
       var db;
@@ -31,7 +46,7 @@
 
   myApp.config([
     '$routeProvider', function($routeProvider) {
-      return $routeProvider.when('/', {
+      return $routeProvider.when('/login', {
         templateUrl: 'views/login.html',
         controller: 'RegistrationController',
         resolve: {
@@ -54,6 +69,16 @@
       }).when('/success', {
         templateUrl: 'views/success.html',
         controller: 'SuccessController',
+        resolve: {
+          "currentAuth": [
+            "Auth", function(Auth) {
+              return Auth.$waitForAuth();
+            }
+          ]
+        }
+      }).when('/', {
+        templateUrl: 'views/main.html',
+        controller: 'RegistrationController',
         resolve: {
           "currentAuth": [
             "Auth", function(Auth) {

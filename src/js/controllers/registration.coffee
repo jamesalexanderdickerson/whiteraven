@@ -1,12 +1,11 @@
 RegistrationController = angular.module 'RegistrationController' , ['firebase']
 
-RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', '$location', '$firebaseObject', ($scope, Auth, currentAuth, $location, $firebaseObject) ->
+RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', '$location', '$firebaseObject', 'User', ($scope, Auth, currentAuth, $location, $firebaseObject, User) ->
   $scope.displayName = null
   $scope.auth = Auth
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
     if authData && !authData.facebook
-      console.log authData
       userRef = new Firebase 'https://myappdatabase1.firebaseio.com/users/' + authData.uid
       currentUser = $firebaseObject(userRef)
       currentUser.$loaded().then(() ->
@@ -21,6 +20,7 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
   $scope.logout = () ->
     $scope.displayName = null
     Auth.$unauth()
+    $location.path '/login'
 
   $scope.login = () ->
     $scope.message = null
@@ -34,7 +34,6 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
       password: password
       }).catch((error) ->
           $scope.error = error
-          console.log error
           )
 
   $scope.createUser = () ->
@@ -55,9 +54,7 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
             lastname: $scope.user.lastname,
             email: $scope.user.email
             })
-        $scope.message = 'User created with uid ' + userData.uid
-        $scope.firstname = userData.firstname
-        $scope.lastname = userData.lastname
+        $scope.login();
         $location.path '/'
       .catch (error) ->
         $scope.error = error
