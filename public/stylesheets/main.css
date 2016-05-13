@@ -101,6 +101,7 @@ nav {
   width: 51px;
   height: 100%;
   z-index: 99;
+  pointer-events: none;
 }
 .nav > ul {
   -webkit-align-self: flex-end;
