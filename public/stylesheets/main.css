@@ -252,7 +252,8 @@ form {
 }
 .content_logged_in {
   width: 60%;
-  margin: 0 0 0 30%;
+  -webkit-transform: translate(15%, 0);
+          transform: translate(15%, 0);
 }
 .content > h1 {
   text-align: center;
