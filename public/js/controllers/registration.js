@@ -43,6 +43,7 @@
       $scope.logout = function() {
         $scope.displayName = UserService;
         $scope.imgsrc = null;
+        UserService.imgsrc = null;
         Auth.$unauth();
         return $location.path('/login');
       };

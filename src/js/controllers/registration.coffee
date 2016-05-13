@@ -31,6 +31,7 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
   $scope.logout = () ->
     $scope.displayName = UserService
     $scope.imgsrc = null
+    UserService.imgsrc = null
     Auth.$unauth()
     $location.path '/login'
 
