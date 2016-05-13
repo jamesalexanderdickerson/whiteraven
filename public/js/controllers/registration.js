@@ -24,14 +24,24 @@
       $scope.facebookLogin = (function(_this) {
         return function() {
           user = UserService;
-          return Auth.$authWithOAuthPopup('facebook').then(function(userData) {
-            UserService.ChangeName(userData.facebook.displayName);
-            return $scope.displayName = UserService.displayName;
+          return Auth.$authWithOAuthPopup('facebook', {
+            remember: 'sessionOnly',
+            scope: 'public_profile'
+          }).then(function(userData) {
+            var imgsrc, name;
+            console.log(userData.facebook);
+            imgsrc = userData.facebook.profileImageURL;
+            name = userData.facebook.cachedUserProfile.first_name + ' ' + userData.facebook.cachedUserProfile.last_name;
+            UserService.ChangeName(name);
+            UserService.ChangeImg(imgsrc);
+            $scope.displayName = UserService.displayName;
+            return $scope.imgsrc = UserService.imgsrc;
           });
         };
       })(this);
       $scope.logout = function() {
         $scope.displayName = UserService;
+        $scope.imgsrc = null;
         Auth.$unauth();
         return $location.path('/login');
       };

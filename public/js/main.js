@@ -25,8 +25,12 @@
     var user;
     user = {};
     user.displayName = "Comic Fan";
+    user.imgsrc = null;
     user.ChangeName = function(value) {
       return user.displayName = value;
+    };
+    user.ChangeImg = function(value) {
+      return user.imgsrc = value;
     };
     return user;
   });

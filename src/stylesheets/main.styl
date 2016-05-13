@@ -99,7 +99,8 @@ nav
 
 .menu
   display flex
-  justify-content center
+  flex-direction column
+  align-items center
 
 .menu > p
   margin-top 20px
@@ -110,6 +111,15 @@ h1
 p.displayName
   font-family 'Marcellus'
   color #433E36
+
+.profile_img > img
+  border-radius 50%
+  border 5px solid white
+  filter gray
+  filter grayscale(1)
+
+.profile_img > img:hover
+  filter none
 
 .logout
   cursor pointer
