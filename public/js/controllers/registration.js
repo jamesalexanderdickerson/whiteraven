@@ -8,6 +8,7 @@
       var user;
       user = UserService;
       $scope.displayName = UserService.displayName;
+      $scope.imgsrc = UserService.imgsrc;
       $scope.auth = Auth;
       $scope.auth.$onAuth(function(authData) {
         var currentUser, userRef;

@@ -1,3 +1,12 @@
+glass = rgba(0, 0, 0, 0)
+bgcolor = #16141F
+navcolor = rgb(0, 11, 11)
+darkgray = #433E36
+almostblack = rgb(0, 11, 11)
+bordercolor = rgb(75, 75, 75)
+validcolor = rgb(0, 149, 28)
+errorcolor = rgb(199, 29, 6)
+
 @@font-face
   font-family Marcellus
   src url(../assets/fonts/Marcellus-Regular.ttf)
@@ -7,8 +16,8 @@ html
   width 100%
 
 body
-   background linear-gradient(#16141F, rgb(0, 11, 11))
-   background-color #16141F
+   background linear-gradient(bgcolor, almostblack)
+   background-color bgcolor
    height 100%
    width 100%
    color white
@@ -23,7 +32,7 @@ nav
   margin-right 0
   margin-bottom 20px
   padding 0
-  background-color rgb(0, 11, 11)
+  background-color navcolor
 
 .nav
   width 100%
@@ -32,7 +41,7 @@ nav
   flex-direction row
   align-self stretch
   justify-content space-between
-  border-bottom 1px solid rgb(75, 75, 75)
+  border-bottom 1px solid bordercolor
   z-index 9999
 
 .nav > a
@@ -57,7 +66,7 @@ nav
 
 .nav > .logo
   display inline
-  background-color rgba(0, 0, 0, 0)
+  background-color glass
   background-image url(../assets/images/logo.png)
   background-size 50px 50px
   background-repeat no-repeat
@@ -89,7 +98,7 @@ nav
 
 .sidebar
   background-color rgb(0, 11, 11)
-  border-right 1px solid rgb(75, 75, 75)
+  border-right 1px solid bordercolor
   position fixed
   top 69px
   bottom 0
@@ -109,8 +118,9 @@ h1
   font-size 3rem
   font-family 'Marcellus'
 p.displayName
+  margin-top -2px
   font-family 'Marcellus'
-  color #433E36
+  color darkgray
 
 .profile_img > img
   border-radius 50%
@@ -146,7 +156,7 @@ input, textarea, select
   display flex
 
 .validationerror
-  color rgb(199, 29, 6)
+  color errorcolor
   align-self flex-end
   margin 0 0 0 20px
   padding 0
@@ -162,10 +172,10 @@ input, textarea, select
   width 70%
 
 input.ng-invalid.ng-touched
-  border 1px solid rgb(199, 29, 6)
+  border 1px solid errorcolor
 
 input.ng-valid.ng-touched
-  border 1px solid rgb(0, 149, 28)
+  border 1px solid validcolor
 
 .inputs.top_field > input
   border-bottom-left-radius 0
@@ -210,3 +220,19 @@ form
   text-align center
   padding 0
   width 200px
+
+.footer_quote
+  position absolute
+  left 0
+  right 0
+  bottom 10px
+
+.footer_quote > p
+  display block
+  margin 0 auto
+  width 80%
+  color darkgray
+  font-size 1rem
+
+.wr
+  color rgb(135, 135, 135)

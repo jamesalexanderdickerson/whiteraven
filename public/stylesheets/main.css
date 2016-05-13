@@ -147,6 +147,7 @@ h1 {
   font-family: 'Marcellus';
 }
 p.displayName {
+  margin-top: -2px;
   font-family: 'Marcellus';
   color: #433e36;
 }
@@ -260,4 +261,20 @@ form {
   text-align: center;
   padding: 0;
   width: 200px;
+}
+.footer_quote {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+}
+.footer_quote > p {
+  display: block;
+  margin: 0 auto;
+  width: 80%;
+  color: #433e36;
+  font-size: 1rem;
+}
+.wr {
+  color: #878787;
 }

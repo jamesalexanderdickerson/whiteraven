@@ -3,6 +3,7 @@ RegistrationController = angular.module 'RegistrationController' , ['firebase']
 RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'currentAuth', '$location', '$firebaseObject', 'UserService', ($scope, Auth, currentAuth, $location, $firebaseObject, UserService) ->
   user = UserService
   $scope.displayName = UserService.displayName
+  $scope.imgsrc = UserService.imgsrc
   $scope.auth = Auth
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
