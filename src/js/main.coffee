@@ -24,9 +24,20 @@ myApp.factory "UserService", () ->
   return user
 
 
-myApp.factory "Messages", ["$firebaseObj", ($firebaseObj) ->
-  db = new Firebase 'https://myappdatabase1.firebaseio.com/'
-  $firebaseObj(db)
+myApp.factory "Messages", ["$firebaseArray","$firebaseObject", "UserService", ($firebaseArray, $firebaseObject, UserService) ->
+  db = new Firebase 'https://myappdatabase1.firebaseio.com/messages/'
+  messages = $firebaseArray(db)
+  Message = {
+    all: messages,
+    create: (message) ->
+      message.displayName = UserService.displayName
+      messages.$add(message)
+    get: (messageId) ->
+      $firebaseObject(db.child(messageId))
+    delete: (message) ->
+      messages.$remove(message)
+  }
+  return Message
 ]
 
 myApp.config ['$routeProvider', ($routeProvider) ->

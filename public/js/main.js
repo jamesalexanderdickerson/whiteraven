@@ -36,10 +36,24 @@
   });
 
   myApp.factory("Messages", [
-    "$firebaseObj", function($firebaseObj) {
-      var db;
-      db = new Firebase('https://myappdatabase1.firebaseio.com/');
-      return $firebaseObj(db);
+    "$firebaseArray", "$firebaseObject", "UserService", function($firebaseArray, $firebaseObject, UserService) {
+      var Message, db, messages;
+      db = new Firebase('https://myappdatabase1.firebaseio.com/messages/');
+      messages = $firebaseArray(db);
+      Message = {
+        all: messages,
+        create: function(message) {
+          message.displayName = UserService.displayName;
+          return messages.$add(message);
+        },
+        get: function(messageId) {
+          return $firebaseObject(db.child(messageId));
+        },
+        "delete": function(message) {
+          return messages.$remove(message);
+        }
+      };
+      return Message;
     }
   ]);
 

@@ -1,8 +1,11 @@
 LiveChatController= angular.module 'LiveChatController' , ['firebase']
 
-LiveChatController.controller 'LiveChatController', ['$scope','Auth', 'currentAuth', 'UserService', '$location', ($scope, Auth, currentAuth, UserService, $location) ->
+LiveChatController.controller 'LiveChatController', ['$scope','Auth', 'currentAuth', 'UserService', 'Messages', '$location', ($scope, Auth, currentAuth, UserService, Messages, $location) ->
   user = UserService
+  chat = {}
   $scope.displayName = UserService.displayName
+  chat.displayName = UserService.displayName
+  $scope.messages = Messages.all
   $scope.imgsrc = UserService.imgsrc
   $scope.auth = Auth
   $scope.auth.$onAuth (authData) ->
@@ -15,6 +18,8 @@ LiveChatController.controller 'LiveChatController', ['$scope','Auth', 'currentAu
         $scope.displayName = UserService.displayName
         )
 
+  $scope.sendMsg = (message) ->
+    Messages.create(message)
 
   $scope.logout = () ->
     $scope.displayName = UserService

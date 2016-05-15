@@ -4,5 +4,9 @@ div.content.content_logged_in
 	h1 This is going to be a chat
 	p.
 		{{message}}
+	.live_chat_window
+		ul
+			li(ng-repeat="message in messages")
+				{{message.displayName}} : {{message.message}}
 div.live_footer
 	div(class="footer" ng-include="'views/footer.html'")
