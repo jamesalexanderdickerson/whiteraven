@@ -1,10 +1,9 @@
 LiveChatController= angular.module 'LiveChatController' , ['firebase']
 
-LiveChatController.controller 'LiveChatController', ['$scope','Auth', 'currentAuth', 'UserService', 'Messages', '$location', ($scope, Auth, currentAuth, UserService, Messages, $location) ->
+LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', ($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject) ->
   user = UserService
-  chat = {}
+  $scope.id = ''
   $scope.displayName = UserService.displayName
-  chat.displayName = UserService.displayName
   $scope.messages = Messages.all
   $scope.imgsrc = UserService.imgsrc
   $scope.auth = Auth
@@ -17,14 +16,21 @@ LiveChatController.controller 'LiveChatController', ['$scope','Auth', 'currentAu
         UserService.ChangeName(currentUser.firstname + " " + currentUser.lastname)
         $scope.displayName = UserService.displayName
         )
+    if authData.facebook
+      $scope.id = authData.facebook.id
 
   $scope.sendMsg = (message) ->
     Messages.create(message)
+    $scope.chat.message = ''
+
+  $scope.delMsg = (message) ->
+    Messages.delete(message)
 
   $scope.logout = () ->
     $scope.displayName = UserService
-    $scope.imgsrc = null
     UserService.imgsrc = null
+    $scope.imgsrc = UserService.imgsrc
+    $scope.id = ''
     Auth.$unauth()
     $location.path '/login'
 

@@ -5,8 +5,12 @@ div.content.content_logged_in
 	p.
 		{{message}}
 	.live_chat_window
-		ul
+		ul(ng-hide="id == '10208086100723397'")
 			li(ng-repeat="message in messages")
 				{{message.displayName}} : {{message.message}}
+		ul(ng-show="id == '10208086100723397'")
+			li(ng-repeat="message in messages")
+				{{message.displayName}} : {{message.message}}
+				a(class="delete" ng-click="delMsg(message)") delete
 div.live_footer
 	div(class="footer" ng-include="'views/footer.html'")

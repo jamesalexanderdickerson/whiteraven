@@ -18,9 +18,7 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
   $scope.facebookLogin = () =>
     user = UserService
     Auth.$authWithOAuthPopup('facebook',{remember: 'sessionOnly', scope: 'public_profile'}).then((userData) ->
-      console.log userData.facebook
       imgsrc = userData.facebook.profileImageURL
-      # console.log imgsrc
       name = userData.facebook.cachedUserProfile.first_name + ' ' + userData.facebook.cachedUserProfile.last_name
       UserService.ChangeName(name)
       UserService.ChangeImg(imgsrc)
@@ -30,8 +28,8 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
 
   $scope.logout = () ->
     $scope.displayName = UserService
-    $scope.imgsrc = null
-    UserService.imgsrc = null
+    $scope.imgsrc = ''
+    UserService.imgsrc = ''
     Auth.$unauth()
     $location.path '/login'
 

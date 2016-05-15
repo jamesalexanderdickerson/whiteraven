@@ -316,3 +316,16 @@ form.chat_form {
 form.chat_form > input {
   width: 700px;
 }
+.live_chat_window {
+  border: 1px solid #433e36;
+  padding: 10px;
+  max-height: 500px;
+  overflow: scroll;
+}
+.live_chat_window > ul {
+  list-style: none;
+}
+.delete {
+  float: right;
+  cursor: pointer;
+}

@@ -30,7 +30,6 @@
             scope: 'public_profile'
           }).then(function(userData) {
             var imgsrc, name;
-            console.log(userData.facebook);
             imgsrc = userData.facebook.profileImageURL;
             name = userData.facebook.cachedUserProfile.first_name + ' ' + userData.facebook.cachedUserProfile.last_name;
             UserService.ChangeName(name);
@@ -42,8 +41,8 @@
       })(this);
       $scope.logout = function() {
         $scope.displayName = UserService;
-        $scope.imgsrc = null;
-        UserService.imgsrc = null;
+        $scope.imgsrc = '';
+        UserService.imgsrc = '';
         Auth.$unauth();
         return $location.path('/login');
       };

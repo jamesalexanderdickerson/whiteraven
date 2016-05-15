@@ -4,12 +4,11 @@
   LiveChatController = angular.module('LiveChatController', ['firebase']);
 
   LiveChatController.controller('LiveChatController', [
-    '$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', function($scope, Auth, currentAuth, UserService, Messages, $location) {
-      var chat, user;
+    '$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', function($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject) {
+      var user;
       user = UserService;
-      chat = {};
+      $scope.id = '';
       $scope.displayName = UserService.displayName;
-      chat.displayName = UserService.displayName;
       $scope.messages = Messages.all;
       $scope.imgsrc = UserService.imgsrc;
       $scope.auth = Auth;
@@ -19,19 +18,27 @@
         if (authData && !authData.facebook) {
           userRef = new Firebase('https://myappdatabase1.firebaseio.com/users/' + authData.uid);
           currentUser = $firebaseObject(userRef);
-          return currentUser.$loaded().then(function() {
+          currentUser.$loaded().then(function() {
             UserService.ChangeName(currentUser.firstname + " " + currentUser.lastname);
             return $scope.displayName = UserService.displayName;
           });
         }
+        if (authData.facebook) {
+          return $scope.id = authData.facebook.id;
+        }
       });
       $scope.sendMsg = function(message) {
-        return Messages.create(message);
+        Messages.create(message);
+        return $scope.chat.message = '';
+      };
+      $scope.delMsg = function(message) {
+        return Messages["delete"](message);
       };
       $scope.logout = function() {
         $scope.displayName = UserService;
-        $scope.imgsrc = null;
         UserService.imgsrc = null;
+        $scope.imgsrc = UserService.imgsrc;
+        $scope.id = '';
         Auth.$unauth();
         return $location.path('/login');
       };
