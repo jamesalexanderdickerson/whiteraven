@@ -1,11 +1,11 @@
 nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
-div(class="mainsite" ng-show="authData" controller="SuccessController")
+div(class="mainsite" ng-show="authData")
 	p Hello, {{ displayName }}! 
-	p You have successfully logged in!
-	p.
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda sed, corporis cupiditate quisquam? Voluptatem non dicta sed fuga repudiandae maxime, ipsum sit magni quisquam quis deleniti adipisci, facere, dolore assumenda.
-
+	h1 
+		a(ng-href="#/gallery") Gallery
+	h1 
+		a(ng-href="#/live") Live Stream
 section.mylogin
 	form(name="myform", novalidate)
 		.main(ng-hide="authData")

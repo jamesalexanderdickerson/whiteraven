@@ -1,7 +1,7 @@
 (function() {
   var myApp;
 
-  myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'RegistrationController', 'SuccessController', 'firebase']);
+  myApp = angular.module('myApp', ['ngRoute', 'ngAnimate', 'RegistrationController', 'GalleryController', 'LiveChatController', 'firebase']);
 
   myApp.run([
     "$rootScope", "$location", function($rootScope, $location) {
@@ -65,9 +65,9 @@
             }
           ]
         }
-      }).when('/success', {
-        templateUrl: 'views/success.html',
-        controller: 'SuccessController',
+      }).when('/contact', {
+        templateUrl: 'views/contact.html',
+        controller: 'RegistrationController',
         resolve: {
           "currentAuth": [
             "Auth", function(Auth) {
@@ -75,9 +75,19 @@
             }
           ]
         }
-      }).when('/contact', {
-        templateUrl: 'views/contact.html',
-        controller: 'RegistrationController',
+      }).when('/live', {
+        templateUrl: 'views/live.html',
+        controller: 'LiveChatController',
+        resolve: {
+          "currentAuth": [
+            "Auth", function(Auth) {
+              return Auth.$waitForAuth();
+            }
+          ]
+        }
+      }).when('/gallery', {
+        templateUrl: 'views/gallery.html',
+        controller: 'GalleryController',
         resolve: {
           "currentAuth": [
             "Auth", function(Auth) {

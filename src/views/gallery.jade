@@ -1,0 +1,6 @@
+nav(class="cf" ng-include="'views/nav.html'")
+div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
+div.content.content_logged_in
+	h1 This is going to be a gallery.
+	p.
+		{{message}}

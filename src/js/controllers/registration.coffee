@@ -59,7 +59,7 @@ RegistrationController.controller 'RegistrationController', ['$scope','Auth', 'c
       firstname: $scope.user.firstname,
       lastname: $scope.user.lastname
       }).then (userData) ->
-        regRef = new Firebase('https://myappdatabase1.firebaseio.com/users')
+        regRef = new Firebase 'https://myappdatabase1.firebaseio.com/users'
           .child(userData.uid).set({
             date: Firebase.ServerValue.TIMESTAMP,
             regUser: userData.uid,

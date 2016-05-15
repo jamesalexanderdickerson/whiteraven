@@ -47,7 +47,9 @@ gulp.task('views', function() {
 });
 gulp.task('styles', function() {
     gulp.src('src/stylesheets/*.styl')
-        .pipe(stylus())
+        .pipe(stylus({
+            url: { name: 'url', limit: false }
+        }))
         .pipe(autoprefixer())
         .pipe(minify())
         .pipe(gulp.dest('public/stylesheets'))
