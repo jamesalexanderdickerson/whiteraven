@@ -22,7 +22,7 @@ LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentA
 
   $scope.sendMsg = (message) ->
     Messages.create(message)
-    $scope.chat.message = ''
+    $scope.chat.message = ""
 
   $scope.delMsg = (message) ->
     Messages.delete(message)

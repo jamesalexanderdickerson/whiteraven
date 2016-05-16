@@ -4,9 +4,9 @@ div.content.content_logged_in
 	h1 Chat with the artist
 	.video_window(ng-show="vidstream == true || id == '10208086100723397'")
 		p This will be a live streaming video
-	.stream_on_off
-		label(for="stream_on_off") Stream
-			input(name="stream_on_off" ng-show="id == '10208086100723397'" type="checkbox" value="{{vidstream}}" ng-checked="vidstream_on()")
+		.stream_on_off
+			label(for="stream_on_off") Stream
+				input(name="stream_on_off" ng-show="id == '10208086100723397'" type="checkbox" value="{{vidstream}}" ng-checked="vidstream_on()")
 	p.
 		{{message}}
 	.live_chat_window

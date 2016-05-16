@@ -30,7 +30,7 @@
       });
       $scope.sendMsg = function(message) {
         Messages.create(message);
-        return $scope.chat.message = '';
+        return $scope.chat.message = "";
       };
       $scope.delMsg = function(message) {
         return Messages["delete"](message);
