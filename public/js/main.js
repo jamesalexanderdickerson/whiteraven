@@ -57,6 +57,22 @@
     }
   ]);
 
+  myApp.factory("VidService", [
+    function($firebaseArray) {
+      var Vidstream, vidstream;
+      vidstream = false;
+      return Vidstream = {
+        on: function() {
+          vidstream = true;
+          return console.log(vidstream);
+        },
+        off: function() {
+          return vidstream = false;
+        }
+      };
+    }
+  ]);
+
   myApp.config([
     '$routeProvider', function($routeProvider) {
       return $routeProvider.when('/login', {

@@ -1,8 +1,9 @@
 LiveChatController= angular.module 'LiveChatController' , ['firebase']
 
-LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', ($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject) ->
+LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', 'VidService', ($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject, VidService) ->
   user = UserService
   $scope.id = ''
+  $scope.vidstream = VidService.vidstream
   $scope.displayName = UserService.displayName
   $scope.messages = Messages.all
   $scope.imgsrc = UserService.imgsrc
@@ -25,6 +26,12 @@ LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentA
 
   $scope.delMsg = (message) ->
     Messages.delete(message)
+
+  $scope.vidstream_on = () ->
+    VidService.on()
+
+  $scope.vidstream_off = () ->
+    VidService.off()
 
   $scope.logout = () ->
     $scope.displayName = UserService

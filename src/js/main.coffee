@@ -40,6 +40,17 @@ myApp.factory "Messages", ["$firebaseArray","$firebaseObject", "UserService", ($
   return Message
 ]
 
+myApp.factory "VidService", [($firebaseArray) ->
+  vidstream = false
+  Vidstream = {
+    on: () ->
+      vidstream = true
+      console.log vidstream
+    off: () ->
+      vidstream = false
+  }
+]
+
 myApp.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
     .when('/login', {

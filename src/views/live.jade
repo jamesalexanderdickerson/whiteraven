@@ -1,16 +1,18 @@
 nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 div.content.content_logged_in
-	h1 This is going to be a chat
+	h1 Chat with the artist
+	.video_window(ng-show="vidstream == true || id == '10208086100723397'")
+		p This will be a live streaming video
+	.stream_on_off
+		label(for="stream_on_off") Stream
+			input(name="stream_on_off" ng-show="id == '10208086100723397'" type="checkbox" value="{{vidstream}}" ng-checked="vidstream_on()")
 	p.
 		{{message}}
 	.live_chat_window
-		ul(ng-hide="id == '10208086100723397'")
+		ul
 			li(ng-repeat="message in messages")
-				{{message.displayName}} : {{message.message}}
-		ul(ng-show="id == '10208086100723397'")
-			li(ng-repeat="message in messages")
-				{{message.displayName}} : {{message.message}}
-				a(class="delete" ng-click="delMsg(message)") delete
+				{{message.displayName}} : {{message.message}} 
+				a(ng-show="id == '10208086100723397'" class="delete" ng-click="delMsg(message)") delete
 div.live_footer
 	div(class="footer" ng-include="'views/footer.html'")
