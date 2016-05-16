@@ -36,10 +36,10 @@
         return Messages["delete"](message);
       };
       $scope.vidstream_on = function() {
-        return VidService.on();
+        return VidService.vid_on();
       };
       $scope.vidstream_off = function() {
-        return VidService.off();
+        return VidService.vid_off();
       };
       $scope.logout = function() {
         $scope.displayName = UserService;

@@ -58,17 +58,15 @@
   ]);
 
   myApp.factory("VidService", [
-    function($firebaseArray) {
-      var Vidstream, vidstream;
-      vidstream = false;
-      return Vidstream = {
-        on: function() {
-          vidstream = true;
-          return console.log(vidstream);
-        },
-        off: function() {
-          return vidstream = false;
-        }
+    "$firebaseObject", function($firebaseObject) {
+      var db, vid_off, vid_on, vidstream;
+      db = new Firebase('https://myappdatabase1.firebaseio.com/vidservice/');
+      vidstream = $firebaseObject(db);
+      vid_on = function() {
+        return vidstream.$child('vid').$child('status').$set('on');
+      };
+      return vid_off = function() {
+        return vidstream.$child('vid').$child('status').$set('off');
       };
     }
   ]);

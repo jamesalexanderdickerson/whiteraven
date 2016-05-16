@@ -28,10 +28,10 @@ LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentA
     Messages.delete(message)
 
   $scope.vidstream_on = () ->
-    VidService.on()
+    VidService.vid_on()
 
   $scope.vidstream_off = () ->
-    VidService.off()
+    VidService.vid_off()
 
   $scope.logout = () ->
     $scope.displayName = UserService
