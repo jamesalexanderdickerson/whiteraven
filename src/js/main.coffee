@@ -43,10 +43,14 @@ myApp.factory "Messages", ["$firebaseArray","$firebaseObject", "UserService", ($
 myApp.factory "VidService", ["$firebaseObject", ($firebaseObject) ->
   db = new Firebase 'https://myappdatabase1.firebaseio.com/vidservice/'
   vidstream = $firebaseObject(db)
-  vid_on = () ->
-    vidstream.$child('vid').$child('status').$set('on')
-  vid_off = () ->
-    vidstream.$child('vid').$child('status').$set('off')
+  vidstream.status = 'off'
+  show: vidstream,
+  vid_on: () ->
+    vidstream.status = 'on'
+    vidstream.$save();
+  vid_off: () ->
+    vidstream.status = 'off'
+    vidstream.$save();
 ]
 
 myApp.config ['$routeProvider', ($routeProvider) ->

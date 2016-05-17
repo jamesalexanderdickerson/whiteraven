@@ -7,8 +7,10 @@
     '$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', 'VidService', function($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject, VidService) {
       var user;
       user = UserService;
+      $scope.btn_checked_on = false;
       $scope.id = '';
-      $scope.vidstream = VidService.vidstream;
+      $scope.vidstream = VidService.show.status;
+      console.log(VidService.show.status);
       $scope.displayName = UserService.displayName;
       $scope.messages = Messages.all;
       $scope.imgsrc = UserService.imgsrc;
@@ -36,10 +38,12 @@
         return Messages["delete"](message);
       };
       $scope.vidstream_on = function() {
-        return VidService.vid_on();
+        VidService.vid_on();
+        return $scope.btn_checked_on = false;
       };
       $scope.vidstream_off = function() {
-        return VidService.vid_off();
+        VidService.vid_off();
+        return $scope.btn_checked_on = true;
       };
       $scope.logout = function() {
         $scope.displayName = UserService;
