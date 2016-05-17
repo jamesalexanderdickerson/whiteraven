@@ -2,12 +2,9 @@ LiveChatController= angular.module 'LiveChatController' , ['firebase']
 
 LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', 'VidService', ($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject, VidService) ->
   user = UserService
-  $scope.$watch(VidService.show.status, () ->
-    $scope.vidstream = VidService.show.status
-    )
+  $scope.vidstream = VidService.show
   $scope.btn_checked_on = false
   $scope.id = ''
-  $scope.vidstream = VidService.show.status
   $scope.displayName = UserService.displayName
   $scope.messages = Messages.all
   $scope.imgsrc = UserService.imgsrc
@@ -34,15 +31,10 @@ LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentA
   $scope.vidstream_on = () ->
     VidService.vid_on()
     $scope.btn_checked_on = false
-    $scope.vidstream = VidService.show.status
-    console.log $scope.vidstream
 
   $scope.vidstream_off = () ->
     VidService.vid_off()
     $scope.btn_checked_on = true
-    $scope.vidstream = VidService.show.status
-    console.log $scope.vidstream
-
 
   $scope.logout = () ->
     $scope.displayName = UserService

@@ -2,7 +2,7 @@ nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 div.content.content_logged_in
 	h1 Chat with the artist
-	.video_window(ng-show="vidstream == 'on'")
+	.video_window(ng-show="vidstream.status == 'on'")
 		p ************************************************
 		p This will be a live streaming video
 		p ************************************************

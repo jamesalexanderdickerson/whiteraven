@@ -62,7 +62,6 @@
       var db, vidstream;
       db = new Firebase('https://myappdatabase1.firebaseio.com/vidservice/');
       vidstream = $firebaseObject(db);
-      vidstream.status = 'off';
       return {
         show: vidstream,
         vid_on: function() {

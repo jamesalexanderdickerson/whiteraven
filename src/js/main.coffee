@@ -43,8 +43,7 @@ myApp.factory "Messages", ["$firebaseArray","$firebaseObject", "UserService", ($
 myApp.factory "VidService", ["$firebaseObject", ($firebaseObject) ->
   db = new Firebase 'https://myappdatabase1.firebaseio.com/vidservice/'
   vidstream = $firebaseObject(db)
-  vidstream.status = 'off'
-  show: vidstream,
+  show: vidstream
   vid_on: () ->
     vidstream.status = 'on'
     vidstream.$save();
