@@ -2,11 +2,13 @@ nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 div.content.content_logged_in
 	h1 Chat with the artist
-	.video_window(ng-show="vidstream == 'on' || id == '10208086100723397'")
+	.video_window(ng-show="vidstream == 'on'")
+		p ************************************************
 		p This will be a live streaming video
-		.stream_on_off(ng-show="id == '10208086100723397'")
-			button(ng-show="id == '10208086100723397' && btn_checked_on" ng-click="vidstream_on()") Stream On
-			button(ng-show="id == '10208086100723397' && !btn_checked_on" ng-click="vidstream_off()") Stream Off
+		p ************************************************
+	.stream_on_off(ng-show="id == '10208086100723397'")
+		button(ng-show="id == '10208086100723397' && btn_checked_on" ng-click="vidstream_on()") Stream On
+		button(ng-show="id == '10208086100723397' && !btn_checked_on" ng-click="vidstream_off()") Stream Off
 	p.
 		{{message}}
 	.live_chat_window

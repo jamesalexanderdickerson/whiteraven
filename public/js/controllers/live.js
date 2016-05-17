@@ -7,10 +7,12 @@
     '$scope', 'Auth', 'currentAuth', 'UserService', 'Messages', '$location', '$firebaseObject', 'VidService', function($scope, Auth, currentAuth, UserService, Messages, $location, $firebaseObject, VidService) {
       var user;
       user = UserService;
+      $scope.$watch(VidService.show.status, function() {
+        return $scope.vidstream = VidService.show.status;
+      });
       $scope.btn_checked_on = false;
       $scope.id = '';
       $scope.vidstream = VidService.show.status;
-      console.log(VidService.show.status);
       $scope.displayName = UserService.displayName;
       $scope.messages = Messages.all;
       $scope.imgsrc = UserService.imgsrc;
@@ -39,11 +41,15 @@
       };
       $scope.vidstream_on = function() {
         VidService.vid_on();
-        return $scope.btn_checked_on = false;
+        $scope.btn_checked_on = false;
+        $scope.vidstream = VidService.show.status;
+        return console.log($scope.vidstream);
       };
       $scope.vidstream_off = function() {
         VidService.vid_off();
-        return $scope.btn_checked_on = true;
+        $scope.btn_checked_on = true;
+        $scope.vidstream = VidService.show.status;
+        return console.log($scope.vidstream);
       };
       $scope.logout = function() {
         $scope.displayName = UserService;
