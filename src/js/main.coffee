@@ -17,6 +17,7 @@ myApp.factory "UserService", () ->
   user = {}
   user.displayName = "Comic Fan"
   user.imgsrc = null
+
   user.ChangeName = (value) ->
     user.displayName = value
   user.ChangeImg = (value) ->

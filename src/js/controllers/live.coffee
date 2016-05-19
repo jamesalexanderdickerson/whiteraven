@@ -9,6 +9,7 @@ LiveChatController.controller 'LiveChatController', ['$scope', 'Auth', 'currentA
   $scope.messages = Messages.all
   $scope.imgsrc = UserService.imgsrc
   $scope.auth = Auth
+
   $scope.auth.$onAuth (authData) ->
     $scope.authData = authData
     if authData && !authData.facebook

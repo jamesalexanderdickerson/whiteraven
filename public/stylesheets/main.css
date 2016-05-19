@@ -330,15 +330,28 @@ form.chat_form {
 form.chat_form > input {
   width: 700px;
 }
+.chat_name {
+  color: #546893;
+}
+.artist_name {
+  color: #26c17d;
+}
 .live_chat_window {
   margin-left: 20px;
   border: 1px solid #433e36;
-  padding: 10px;
+  padding: 5px;
   max-height: 377px;
   overflow: scroll;
 }
 .live_chat_window > ul {
   list-style: none;
+}
+.live_chat_window li {
+  padding: 5px;
+  margin: 0;
+}
+.live_chat_window li:nth-child(odd) {
+  background-color: rgba(55,55,55,0.39);
 }
 .delete {
   float: right;
