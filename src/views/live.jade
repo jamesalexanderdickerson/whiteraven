@@ -2,19 +2,19 @@ nav(class="cf" ng-include="'views/nav.html'")
 div(class="sidebar" ng-show="authData" ng-include="'views/sidebar.html'")
 div.content.content_logged_in
 	h1 Chat with the artist
-	.video_window(ng-show="vidstream.status == 'on'")
-		p ************************************************
-		p This will be a live streaming video
-		p ************************************************
+	.vid_window
+		.video_window(ng-show="vidstream.status == 'on'")
+			embed(src="http://162.243.78.63:8000/stream.webm" height='400px' width='500px')
+		.live_chat_window(ng-scroll-bottom="messages")
+			ul
+				li(ng-repeat="message in messages")
+					{{message.displayName}} : {{message.message}} 
+					a(ng-show="id == '10208086100723397'" class="delete" ng-click="delMsg(message)") delete
+
 	.stream_on_off(ng-show="id == '10208086100723397'")
 		button(ng-show="id == '10208086100723397' && btn_checked_on" ng-click="vidstream_on()") Stream On
 		button(ng-show="id == '10208086100723397' && !btn_checked_on" ng-click="vidstream_off()") Stream Off
 	p.
 		{{message}}
-	.live_chat_window
-		ul
-			li(ng-repeat="message in messages")
-				{{message.displayName}} : {{message.message}} 
-				a(ng-show="id == '10208086100723397'" class="delete" ng-click="delMsg(message)") delete
 div.live_footer
 	div(class="footer" ng-include="'views/footer.html'")

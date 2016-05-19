@@ -266,6 +266,17 @@ form {
 .content > h1 {
   text-align: center;
 }
+.vid_window {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
 .fb_btn {
   text-align: center;
   padding: 0;
@@ -320,9 +331,10 @@ form.chat_form > input {
   width: 700px;
 }
 .live_chat_window {
+  margin-left: 20px;
   border: 1px solid #433e36;
   padding: 10px;
-  max-height: 500px;
+  max-height: 377px;
   overflow: scroll;
 }
 .live_chat_window > ul {

@@ -52,6 +52,21 @@ myApp.factory "VidService", ["$firebaseObject", ($firebaseObject) ->
     vidstream.$save();
 ]
 
+myApp.directive 'ngScrollBottom', ['$timeout', ($timeout) ->
+  {
+    scope: ngScrollBottom: '='
+    link: ($scope, $element) ->
+      $scope.$watchCollection 'ngScrollBottom', (newValue) ->
+        if newValue
+          $timeout (->
+            $element[0].scrollTop = $element[0].scrollHeight
+            return
+            ), 0
+        return
+      return
+  }
+]
+
 myApp.config ['$routeProvider', ($routeProvider) ->
   $routeProvider
     .when('/login', {
