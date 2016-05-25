@@ -4,11 +4,11 @@ div.content.content_logged_in
 	h1 Chat with the artist
 	.vid_window(ng-show="vidstream.status == 'on'")
 		.video_window
-			embed(src="http://162.243.78.63:8000/stream.webm" height='400px' width='500px')
+			embed(src="https://162.243.78.63/" height='400px' width='500px')
 		.live_chat_window(ng-scroll-bottom="messages")
 			ul
 				li(ng-repeat="message in messages")
-					<span class="chat_name">{{message.displayName}}> </span>  {{message.message}} 
+					<span class="chat_name">{{message.displayName}} > </span>  {{message.message}} 
 					a(ng-show="id == '10208086100723397'" class="delete" ng-click="delMsg(message)") delete
 
 	.stream_on_off(ng-show="id == '10208086100723397'")

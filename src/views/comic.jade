@@ -1,0 +1,30 @@
+#set-height
+	p#time
+	#scrolldown
+		p Scroll Down
+		img(src="./assets/svg/arrows-down.svg" width=40 height=40)
+	#scrollend
+		ul
+			li
+				a(href="/first")
+					img(src="./assets/svg/arrows-right.svg" width=40 height=40 style="transform: scale(-1,1)")
+					p First
+			li
+				a(href="/prev")
+					img(src="./assets/svg/arrow-right.svg" width=40 height=40 style="transform: scale(-1,1)")
+					p Previous
+			li
+				a(href="/next")
+					img(src="./assets/svg/arrow-right.svg" width=40 height=40)
+					p Next
+			li
+				a(href="/last") 
+					img(src="./assets/svg/arrows-right.svg" width=40 height=40)
+					p Last
+	video(id="v0",  tabindex="0", autobuffer preload)
+		<source type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;" src="./assets/vid/comic1.mp4"></source>
+		//- <source type="video/webm; codecs=&quot;vp8, vorbis&quot;" src="http://www.html5rocks.com/tutorials/video/basics/Chrome_ImF.webm"></source>
+		//- <source type="video/ogg; codecs=&quot;theora, vorbis&quot;" src="http://www.html5rocks.com/tutorials/video/basics/Chrome_ImF.ogv"></source>
+		//- <source type="video/mp4; codecs=&quot;avc1.42E01E, mp4a.40.2&quot;" src="http://www.html5rocks.com/tutorials/video/basics/Chrome_ImF.mp4"></source>
+		p Sorry, your browser does not support the &lt;video&gt; element.
+		script(src='js/comic.js') 
