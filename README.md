@@ -1,6 +1,10 @@
 # whiteraven
 ## A content platform for artists
 
+* Angular
+* Node
+* SocketIO
+
 ![frontpage][front_page]
 ![login][login]
 ![logged_in][logged_in]
