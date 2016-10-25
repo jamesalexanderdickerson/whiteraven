@@ -1,2 +1,4 @@
 # whiteraven
-First draft
+## A content platform for artists
+
+ 
